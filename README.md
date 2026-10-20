@@ -1,97 +1,67 @@
-This is a new [**React Native**](https://reactnative.dev) project, bootstrapped using [`@react-native-community/cli`](https://github.com/react-native-community/cli).
+# Country Club Golf Center
 
-# Getting Started
+React Native + TypeScript application with React Navigation, AsyncStorage, local artwork, native camera scanning, WebView splash animation, and gradient buttons.
 
-> **Note**: Make sure you have completed the [Set Up Your Environment](https://reactnative.dev/docs/set-up-your-environment) guide before proceeding.
-
-## Step 1: Start Metro
-
-First, you will need to run **Metro**, the JavaScript build tool for React Native.
-
-To start the Metro dev server, run the following command from the root of your React Native project:
+## Run
 
 ```sh
-# Using npm
+npm install
 npm start
-
-# OR using Yarn
-yarn start
-```
-
-## Step 2: Build and run your app
-
-With Metro running, open a new terminal window/pane from the root of your React Native project, and use one of the following commands to build and run your Android or iOS app:
-
-### Android
-
-```sh
-# Using npm
-npm run android
-
-# OR using Yarn
-yarn android
-```
-
-### iOS
-
-For iOS, remember to install CocoaPods dependencies (this only needs to be run on first clone or after updating native deps).
-
-The first time you create a new project, run the Ruby bundler to install CocoaPods itself:
-
-```sh
-bundle install
-```
-
-Then, and every time you update your native dependencies, run:
-
-```sh
-bundle exec pod install
-```
-
-For more information, please visit [CocoaPods Getting Started guide](https://guides.cocoapods.org/using/getting-started.html).
-
-```sh
-# Using npm
 npm run ios
-
-# OR using Yarn
-yarn ios
+npm run android
 ```
 
-If everything is set up correctly, you should see your new app running in the Android Emulator, iOS Simulator, or your connected device.
+Install iOS pods after changing native dependencies:
 
-This is one way to run your app — you can also build it directly from Android Studio or Xcode.
+```sh
+cd ios
+pod install
+```
 
-## Step 3: Modify your app
+CocoaPods needs a current Ruby and Node available on PATH. Android requires JDK 17 and the Android SDK. Camera scanning requires a physical camera; the manual membership form works in a simulator.
 
-Now that you have successfully run the app, let's make changes!
+## Features
 
-Open `App.tsx` in your text editor of choice and make some changes. When you save, your app will automatically update and reflect these changes — this is powered by [Fast Refresh](https://reactnative.dev/docs/fast-refresh).
+- Four-second WebView splash animation and four onboarding slides. Onboarding completion is persisted.
+- Six tabs with independent typed navigation stacks and small-screen scrolling.
+- Eight courses and course plans, favorites, zoom/panning, date/time selection, $40 golf cart option, saved booking details, and cancellation.
+- Eight coaches, previous/next profile navigation, practice matches and personal training at a $10 premium.
+- User-created rounds with up to four players, hole-by-hole scores, live rankings, completion statistics, and resumable history.
+- All sixteen club recommendations using the supplied wind, distance, and surface rules. Previous selections remain available after viewing the result.
+- Eight offer categories with locally stored club-issued coupon codes, terms, expiry dates, and CODE128 barcodes.
+- Membership camera scanning and manual entry. Names, membership details, coupons, scores, reservations, and favorites are never prefilled with example records.
 
-When you want to forcefully reload, for example to reset the state of your app, you can perform a full reload:
+## Club information and integrations
 
-- **Android**: Press the <kbd>R</kbd> key twice or select **"Reload"** from the **Dev Menu**, accessed via <kbd>Ctrl</kbd> + <kbd>M</kbd> (Windows/Linux) or <kbd>Cmd ⌘</kbd> + <kbd>M</kbd> (macOS).
-- **iOS**: Press <kbd>R</kbd> in iOS Simulator.
+Open the settings icon on Home to enter the actual club address, latitude, and longitude. Weather comes from [Open-Meteo](https://open-meteo.com/en/docs); the map uses OpenStreetMap and opens the device’s Maps app when tapped. Photos and illustrations are bundled in `src/assets`. Weather and map tiles require internet access.
 
-## Congratulations! :tada:
+Reservations are saved on the current device. Occupied local slots and past times cannot be booked. The repository does not include a club backend, authenticated membership database, payment service, or shared availability endpoint. Consequently, local reservation cards explicitly ask the user to confirm availability with the club. A production deployment needs those services before representing bookings as accepted by the venue or sharing scoreboards across devices.
 
-You've successfully run and modified your React Native App. :partying_face:
+The scanner supports QR, CODE128, PDF417, and Aztec. A self-contained membership payload must contain string fields `firstName`, `lastName`, `number`, and `validUntil` (YYYY-MM-DD); `tier` is optional. An opaque membership ID cannot reveal its owner without the club’s lookup service, so the app provides manual entry. Reading a payload is not server-side verification of membership.
 
-### Now what?
+Coupon discounts, codes, terms, and expiry dates were not supplied. The app therefore stores information from a real coupon entered by the user and never generates entitlement codes. The club handles redemption. Offer labels and supplied course/coach content are catalog data.
 
-- If you want to add this new React Native code to an existing application, check out the [Integration guide](https://reactnative.dev/docs/integration-with-existing-apps).
-- If you're curious to learn more about React Native, check out the [docs](https://reactnative.dev/docs/getting-started).
+Per-hole pars were not supplied, so the scorecard reports strokes and completion without inventing a par layout. In incomplete rounds, players are ordered by holes completed first, then by fewer strokes. Complete rounds rank by total strokes.
 
-# Troubleshooting
+## Structure
 
-If you're having issues getting the above steps to work, see the [Troubleshooting](https://reactnative.dev/docs/troubleshooting) page.
+- `src/navigation`: typed stacks and six-tab navigator
+- `src/screens`: feature screens
+- `src/components`: shared controls, cards, icons, map, barcode
+- `src/state`: versioned persisted state and serialized writes
+- `src/data`: supplied catalogs and static asset imports
+- `src/utils`: booking, scoring, membership, and recommendation rules
+- `src/services`: weather integration
+- `src/theme`: shared colors, typography, and layout
 
-# Learn More
+State writes are serialized, only published after successful persistence, and surfaced as errors if storage fails. Failed hydration does not overwrite saved records. AsyncStorage is local application storage, not an encrypted credential vault.
 
-To learn more about React Native, take a look at the following resources:
+## Checks
 
-- [React Native Website](https://reactnative.dev) - learn more about React Native.
-- [Getting Started](https://reactnative.dev/docs/environment-setup) - an **overview** of React Native and how setup your environment.
-- [Learn the Basics](https://reactnative.dev/docs/getting-started) - a **guided tour** of the React Native **basics**.
-- [Blog](https://reactnative.dev/blog) - read the latest official React Native **Blog** posts.
-- [`@facebook/react-native`](https://github.com/facebook/react-native) - the Open Source; GitHub **repository** for React Native.
+```sh
+npx tsc --noEmit
+npm run lint
+npm test -- --runInBand --watchman=false
+```
+
+Tests cover all supplied selector examples, every club boundary, wind and surface overrides, invalid input, score totals, date validation, booking time checks, storage failure handling, and splash-to-onboarding transition.

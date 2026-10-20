@@ -1,0 +1,70 @@
+import { Platform, StyleSheet } from 'react-native';
+export const colors = {
+  background: '#081521',
+  panel: '#191D22',
+  nav: '#112438',
+  gold: '#C7A254',
+  goldDark: '#AF873B',
+  text: '#F2F0E9',
+  muted: '#97A2AE',
+  line: '#293746',
+  danger: '#EEA59D',
+};
+export const serif = Platform.select({
+  ios: 'Bodoni 72',
+  android: 'serif',
+  default: 'Georgia',
+});
+export const styles = StyleSheet.create({
+  fill: { flex: 1, backgroundColor: colors.background },
+  content: {
+    padding: 20,
+    paddingBottom: 36,
+    gap: 18,
+    width: '100%',
+    maxWidth: 680,
+    alignSelf: 'center',
+  },
+  title: {
+    fontFamily: serif,
+    fontSize: 34,
+    color: colors.text,
+    lineHeight: 40,
+  },
+  subtitle: { fontFamily: serif, fontSize: 25, color: colors.text },
+  body: { fontSize: 14, lineHeight: 24, color: colors.muted },
+  text: { fontSize: 14, color: colors.text },
+  label: {
+    fontSize: 10,
+    letterSpacing: 2,
+    color: colors.gold,
+    textTransform: 'uppercase',
+    marginTop: 8,
+  },
+  row: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+    gap: 12,
+  },
+  wrap: { flexDirection: 'row', flexWrap: 'wrap', gap: 8 },
+  card: {
+    padding: 16,
+    backgroundColor: colors.panel,
+    borderRadius: 5,
+    gap: 16,
+  },
+  line: { height: 1, backgroundColor: colors.line, marginVertical: 4 },
+  input: {
+    borderWidth: 1,
+    borderColor: colors.line,
+    borderRadius: 4,
+    color: colors.text,
+    padding: 14,
+    minHeight: 48,
+    fontSize: 14,
+  },
+  image: { width: '100%', height: 220 },
+  error: { color: colors.danger, fontSize: 13, lineHeight: 20 },
+  gold: { color: colors.gold },
+});
