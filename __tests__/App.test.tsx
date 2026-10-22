@@ -12,7 +12,9 @@ test('launches into the branded splash and transitions after animation', async (
   await act(async () => {
     webview.props.onMessage({ nativeEvent: { data: 'complete' } });
   });
-  expect(JSON.stringify(tree!.toJSON())).toContain('Welcome to Your Club');
+  expect(JSON.stringify(tree!.toJSON())).toContain(
+    'Welcome to Greenway Golf Club',
+  );
   await act(async () => tree!.unmount());
   jest.useRealTimers();
 });

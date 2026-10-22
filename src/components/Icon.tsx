@@ -1,4 +1,5 @@
 import React from 'react';
+import { colors } from '../theme';
 import Svg, { Path, Circle, Rect } from 'react-native-svg';
 export type IconName =
   | 'home'
@@ -16,7 +17,7 @@ export type IconName =
   | 'settings';
 export function Icon({
   name,
-  color = '#97A2AE',
+  color = colors.muted,
   size = 24,
   filled = false,
 }: {

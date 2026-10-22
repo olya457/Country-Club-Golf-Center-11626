@@ -1,4 +1,4 @@
-package com.countryclub.golfcenter
+package com.greenwaygolfclub
 
 import android.os.Bundle
 import com.facebook.react.ReactActivity

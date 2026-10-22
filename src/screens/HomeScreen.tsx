@@ -15,6 +15,7 @@ import { artwork } from '../data/catalog';
 import { useApp } from '../state/AppContext';
 import { Button, Field, Heading, Screen } from '../components/ui';
 import { Icon } from '../components/Icon';
+import { ClubLogo } from '../components/ClubLogo';
 import { MemberCard } from '../components/MemberCard';
 import { colors, styles as s } from '../theme';
 import { getWeather, Weather } from '../services/weather';
@@ -83,9 +84,8 @@ export function HomeScreen({
   return (
     <Screen>
       <View style={s.row}>
-        <View style={{ gap: 6 }}>
-          <Text style={[s.subtitle, { letterSpacing: 3 }]}>COUNTRY CLUB</Text>
-          <Text style={[s.label, { letterSpacing: 4 }]}>GOLF CENTER</Text>
+        <View style={{ flex: 1 }}>
+          <ClubLogo compact />
         </View>
         <Pressable
           accessibilityRole="button"

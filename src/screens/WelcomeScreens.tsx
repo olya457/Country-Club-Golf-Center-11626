@@ -3,7 +3,6 @@ import { useLayout } from '../hooks/useLayout';
 import React, { useCallback, useEffect, useRef, useState } from 'react';
 import {
   Alert,
-  Image,
   ImageBackground,
   Pressable,
   ScrollView,
@@ -13,10 +12,11 @@ import {
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { WebView } from 'react-native-webview';
 import { artwork, onboarding } from '../data/catalog';
+import { ClubLogo, ClubEmblem } from '../components/ClubLogo';
 import { Button } from '../components/ui';
 import { useApp } from '../state/AppContext';
 import { colors, styles as s } from '../theme';
-const animation = `<!doctype html><html><head><meta name="viewport" content="width=device-width, initial-scale=1"><style>html,body{margin:0;background:transparent;overflow:hidden}.dots{display:flex;justify-content:center;align-items:center;height:80px}i{display:block;width:38px;height:38px;border-radius:50%;background:#d0ac54;margin:-4px;animation:pulse 1s ease-in-out 4}i:nth-child(2){animation-delay:.15s}i:nth-child(3){animation-delay:.3s}@keyframes pulse{0%,100%{opacity:.3;transform:scale(.8)}50%{opacity:1;transform:scale(1)}}@media(prefers-reduced-motion:reduce){i{animation:none;opacity:.7}}</style></head><body><div class="dots"><i></i><i></i><i></i></div><script>setTimeout(function(){window.ReactNativeWebView.postMessage('complete')},4000)</script></body></html>`;
+const animation = `<!doctype html><html><head><meta name="viewport" content="width=device-width, initial-scale=1"><style>html,body{margin:0;background:transparent;overflow:hidden}.dots{display:flex;justify-content:center;align-items:center;height:80px}i{display:block;width:38px;height:38px;border-radius:50%;background:${colors.gold};margin:-4px;animation:pulse 1s ease-in-out 4}i:nth-child(2){animation-delay:.15s}i:nth-child(3){animation-delay:.3s}@keyframes pulse{0%,100%{opacity:.3;transform:scale(.8)}50%{opacity:1;transform:scale(1)}}@media(prefers-reduced-motion:reduce){i{animation:none;opacity:.7}}</style></head><body><div class="dots"><i></i><i></i><i></i></div><script>setTimeout(function(){window.ReactNativeWebView.postMessage('complete')},4000)</script></body></html>`;
 export function SplashScreen({ onComplete }: { onComplete: () => void }) {
   const layout = useLayout();
   const done = useRef(false);
@@ -35,6 +35,7 @@ export function SplashScreen({ onComplete }: { onComplete: () => void }) {
       <SafeAreaView
         style={{
           flex: 1,
+          backgroundColor: colors.photoOverlay,
           alignItems: 'center',
           justifyContent: 'space-between',
           paddingTop: layout.height < 700 ? 16 : 30,
@@ -44,21 +45,9 @@ export function SplashScreen({ onComplete }: { onComplete: () => void }) {
         <ScreenReveal
           style={{ alignItems: 'center', gap: layout.height < 700 ? 12 : 22 }}
         >
-          <Image
-            source={artwork.logo}
-            style={{ width: 240, height: 81 }}
-            resizeMode="contain"
-          />
-          <View
-            style={{ height: 1, width: 40, backgroundColor: colors.gold }}
-          />
-          <Text style={[s.label, { letterSpacing: 7 }]}>GOLF CENTER</Text>
+          <ClubLogo />
         </ScreenReveal>
-        <Image
-          source={artwork.mark}
-          style={{ width: '92%', height: Math.min(180, layout.height * 0.22) }}
-          resizeMode="contain"
-        />
+        <ClubEmblem size={Math.min(180, layout.height * 0.22)} />
         <View style={{ height: 90, width: '100%' }}>
           <WebView
             source={{ html: animation }}
@@ -86,7 +75,7 @@ export function OnboardingScreen() {
   const finish = () => update(state => ({ ...state, onboarded: true }));
   return (
     <ImageBackground source={slide.image} style={{ flex: 1 }}>
-      <SafeAreaView style={{ flex: 1 }}>
+      <SafeAreaView style={{ flex: 1, backgroundColor: colors.photoOverlay }}>
         <View style={{ alignItems: 'flex-end', paddingHorizontal: 20 }}>
           <Pressable
             accessibilityRole="button"

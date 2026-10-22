@@ -1,14 +1,18 @@
 import { Platform, StyleSheet } from 'react-native';
 export const colors = {
-  background: '#081521',
-  panel: '#191D22',
-  nav: '#112438',
-  gold: '#C7A254',
-  goldDark: '#AF873B',
-  text: '#F2F0E9',
-  muted: '#97A2AE',
-  line: '#293746',
-  danger: '#EEA59D',
+  background: '#211411',
+  panel: '#34201C',
+  nav: '#2C1519',
+  gold: '#D7B18A',
+  goldDark: '#BA8963',
+  text: '#FFF3E6',
+  muted: '#C7ADA0',
+  line: '#65433C',
+  button: '#85394B',
+  buttonDark: '#632535',
+  onButton: '#FFF3E6',
+  photoOverlay: 'rgba(40, 17, 20, 0.72)',
+  danger: '#FFB1A8',
 };
 export const serif = Platform.select({
   ios: 'Bodoni 72',

@@ -292,13 +292,11 @@ export const offers = [
 ];
 export const artwork = {
   hero: require('../assets/golf-clubhouse.png'),
-  logo: require('../assets/golf-wordmark.png'),
-  mark: require('../assets/golf-emblem.png'),
 };
 export const onboarding = [
   {
     image: require('../assets/golf-onboarding-welcome.png'),
-    title: 'Welcome to Your Club',
+    title: 'Welcome to Greenway Golf Club',
     body: 'Discover the complex, scan your membership ticket, and check conditions before your visit.',
   },
   {

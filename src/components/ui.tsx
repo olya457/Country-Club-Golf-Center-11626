@@ -153,7 +153,7 @@ export function Button({
         colors={
           outline
             ? [colors.background, colors.background]
-            : ['#CBA95E', '#BD964B']
+            : [colors.button, colors.buttonDark]
         }
         start={{ x: 0, y: 0 }}
         end={{ x: 1, y: 1 }}
@@ -161,11 +161,11 @@ export function Button({
         style={StyleSheet.absoluteFill}
       />
       {busy ? (
-        <ActivityIndicator color={outline ? colors.gold : colors.background} />
+        <ActivityIndicator color={outline ? colors.gold : colors.onButton} />
       ) : (
         <Text
           style={{
-            color: outline ? colors.text : '#09121B',
+            color: outline ? colors.text : colors.onButton,
             fontSize: 11,
             letterSpacing: 1.4,
             fontWeight: '600',
@@ -207,7 +207,7 @@ export function Choice({
           borderWidth: 1,
           borderColor: selected ? colors.gold : colors.line,
           borderRadius: 4,
-          backgroundColor: selected ? colors.gold : 'transparent',
+          backgroundColor: selected ? colors.button : 'transparent',
           opacity: disabled ? 0.3 : 1,
           flexGrow: 1,
           justifyContent: 'center',
@@ -216,7 +216,7 @@ export function Choice({
     >
       <Text
         style={{
-          color: selected ? colors.background : colors.text,
+          color: selected ? colors.onButton : colors.text,
           textAlign: 'center',
           fontSize: 13,
         }}
