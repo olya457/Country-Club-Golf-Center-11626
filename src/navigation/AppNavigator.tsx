@@ -21,6 +21,7 @@ import { CoachesScreen, CoachScreen } from '../screens/CoachesScreen';
 import { BookingScreen, ConfirmationScreen } from '../screens/BookingScreen';
 import { ScorecardScreen, RoundScreen } from '../screens/ScorecardScreen';
 import { SelectorScreen } from '../screens/SelectorScreen';
+import { LearnScreen } from '../screens/LearnScreen';
 import { CouponsScreen, CouponScreen } from '../screens/CouponsScreen';
 const Stack = createNativeStackNavigator<FeatureStack>();
 const Tabs = createBottomTabNavigator();
@@ -76,6 +77,7 @@ function CouponStack() {
 }
 const icons: Record<string, IconName> = {
   Home: 'home',
+  Learn: 'book',
   Courses: 'flag',
   Coaches: 'coach',
   Scorecard: 'score',
@@ -145,6 +147,7 @@ export function AppNavigator() {
       >
         <Tabs.Screen name="Home" component={HomeStack} />
         <Tabs.Screen name="Courses" component={CoursesStack} />
+        <Tabs.Screen name="Learn" component={LearnScreen} />
         <Tabs.Screen name="Coaches" component={CoachesStack} />
         <Tabs.Screen name="Scorecard" component={ScoreStack} />
         <Tabs.Screen name="Selector" component={SelectorScreen} />

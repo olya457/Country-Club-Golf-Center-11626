@@ -23,7 +23,9 @@ CocoaPods needs a current Ruby and Node available on PATH. Android requires JDK 
 ## Features
 
 - Four-second WebView splash animation and four onboarding slides. Onboarding completion is persisted.
-- Six tabs with independent typed navigation stacks and small-screen scrolling.
+- Seven tabs with independent feature navigation and small-screen scrolling.
+- Learn Golf: English rules, course and club guides, plus external articles and club-specific video series from The R&A, Golf Australia, Southern California PGA, and Golf Digest. Reading the built-in guides works offline; external resources require internet access.
+- Responsive learning cards, wrapping section controls, and safe-area-aware layout for compact iPhones and iPhone Duo.
 - Eight courses and course plans, favorites, zoom/panning, date/time selection, $40 golf cart option, saved booking details, and cancellation.
 - Eight coaches, previous/next profile navigation, practice matches and personal training at a $10 premium.
 - User-created rounds with up to four players, hole-by-hole scores, live rankings, completion statistics, and resumable history.
@@ -45,11 +47,11 @@ Per-hole pars were not supplied, so the scorecard reports strokes and completion
 
 ## Structure
 
-- `src/navigation`: typed stacks and six-tab navigator
+- `src/navigation`: typed stacks and seven-tab navigator
 - `src/screens`: feature screens
 - `src/components`: shared controls, cards, icons, map, barcode
 - `src/state`: versioned persisted state and serialized writes
-- `src/data`: supplied catalogs and static asset imports
+- `src/data`: supplied catalogs, learning content, external resources, and static asset imports
 - `src/utils`: booking, scoring, membership, and recommendation rules
 - `src/services`: weather integration
 - `src/theme`: shared colors, typography, and layout
@@ -64,4 +66,4 @@ npm run lint
 npm test -- --runInBand --watchman=false
 ```
 
-Tests cover all supplied selector examples, every club boundary, wind and surface overrides, invalid input, score totals, date validation, booking time checks, storage failure handling, and splash-to-onboarding transition.
+Tests cover all supplied selector examples, every club boundary, wind and surface overrides, invalid input, score totals, date validation, booking time checks, storage failure handling, splash-to-onboarding transition, learning section navigation, and external-link success/failure handling.

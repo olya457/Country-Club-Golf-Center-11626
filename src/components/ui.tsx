@@ -1,4 +1,4 @@
-import React, { ReactNode, useState } from 'react';
+import React, { ReactNode, useEffect, useRef, useState } from 'react';
 import {
   ActivityIndicator,
   Animated,
@@ -30,6 +30,10 @@ export function Screen({
   motionKey?: string | number;
 }) {
   const layout = useLayout();
+  const scroll = useRef<ScrollView>(null);
+  useEffect(() => {
+    scroll.current?.scrollTo({ y: 0, animated: false });
+  }, [motionKey]);
   return (
     <SafeAreaView edges={['top', 'left', 'right']} style={s.fill}>
       <KeyboardAvoidingView
@@ -37,6 +41,7 @@ export function Screen({
         behavior={Platform.OS === 'ios' ? 'padding' : undefined}
       >
         <ScrollView
+          ref={scroll}
           keyboardShouldPersistTaps="handled"
           contentContainerStyle={{ flexGrow: 1 }}
           keyboardDismissMode="on-drag"

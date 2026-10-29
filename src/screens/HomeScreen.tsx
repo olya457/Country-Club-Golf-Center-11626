@@ -83,7 +83,7 @@ export function HomeScreen({
   return (
     <Screen>
       <View style={s.row}>
-        <View style={{ gap: 6 }}>
+        <View style={{ gap: 6, flex: 1 }}>
           <Text style={[s.subtitle, { letterSpacing: 3 }]}>COUNTRY CLUB</Text>
           <Text style={[s.label, { letterSpacing: 4 }]}>GOLF CENTER</Text>
         </View>
@@ -107,6 +107,17 @@ export function HomeScreen({
         clubhouse, all in one place. Reserve a tee time, sharpen your game, and
         keep every round on record.
       </Text>
+      <View style={s.card}>
+        <Text style={s.subtitle}>New to the game?</Text>
+        <Text style={s.body}>
+          Rules, a quick course guide, club basics and expert video lessons —
+          all in one place.
+        </Text>
+        <Button
+          title="Explore Learn Golf"
+          onPress={() => navigation.getParent()?.navigate('Learn')}
+        />
+      </View>
       {state.member && <MemberCard member={state.member} />}
       <Button
         title={

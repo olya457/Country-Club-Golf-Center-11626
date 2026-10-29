@@ -1,12 +1,6 @@
+import { useLayout } from '../hooks/useLayout';
 import React, { useState } from 'react';
-import {
-  Image,
-  Pressable,
-  ScrollView,
-  Text,
-  View,
-  useWindowDimensions,
-} from 'react-native';
+import { Image, Pressable, ScrollView, Text, View } from 'react-native';
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
 import { FeatureStack } from '../navigation/types';
 import { courses } from '../data/catalog';
@@ -120,8 +114,7 @@ export function PlanScreen({
   route,
 }: NativeStackScreenProps<FeatureStack, 'Plan'>) {
   const [zoom, setZoom] = useState(1);
-  const { width } = useWindowDimensions();
-  const size = Math.min(width - 40, 640);
+  const { contentWidth: size } = useLayout();
   const course = courses.find(item => item.id === route.params.id)!;
   return (
     <Screen>

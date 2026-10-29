@@ -1,6 +1,7 @@
 import React from 'react';
 import Svg, { Path, Circle, Rect } from 'react-native-svg';
 export type IconName =
+  | 'book'
   | 'home'
   | 'flag'
   | 'coach'
@@ -26,6 +27,7 @@ export function Icon({
   filled?: boolean;
 }) {
   const paths: Partial<Record<IconName, string>> = {
+    book: 'M12 5v16M12 5C9 2 5 2 2 3v16c4-1 7-1 10 2 3-3 6-3 10-2V3c-3-1-7-1-10 2Z',
     home: 'M3 11 12 3l9 8M5 10v11h5v-7h4v7h5V10',
     flag: 'M6 22V2l14 5-14 6M3 22h9',
     coach: 'M3 21v-5c0-5 9-5 9 0v5M15 19l5-16M14 16l4 1',
